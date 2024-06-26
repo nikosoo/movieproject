@@ -9,15 +9,19 @@ import Header from "./components/Header/Header";
 function App() {
   return (
     <Router>
-      <Header></Header>
-      <div className="bg-customBg">
-        <Routes>
-          <Route path="/" element={<Home />} />
-          <Route path="/movie/:imdbID" element={<MovieDetail />} />
-          <Route element={<PageNotFound />} />
-        </Routes>
+      <div className="flex flex-col min-h-screen font-montserrat ">
+        <Header />
+
+        <div className="flex-1 bg-customBg">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route path="/movie/:imdbID" element={<MovieDetail />} />
+            <Route element={<PageNotFound />} />
+          </Routes>
+        </div>
+
+        <Footer className="bg-gray-800 text-white text-center py-4" />
       </div>
-      <Footer />
     </Router>
   );
 }

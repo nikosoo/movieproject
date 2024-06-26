@@ -15,7 +15,7 @@ const MovieListing = () => {
     dots: true,
     infinite: true,
     speed: 500,
-    slidesToShow: 4, // Adjust as per your layout requirements
+    slidesToShow: 4,
     slidesToScroll: 1,
     autoplay: true,
     autoplaySpeed: 3000,
@@ -28,7 +28,7 @@ const MovieListing = () => {
         },
       },
       {
-        breakpoint: 600,
+        breakpoint: 768,
         settings: {
           slidesToShow: 2,
           slidesToScroll: 1,
@@ -44,58 +44,43 @@ const MovieListing = () => {
     ],
   };
 
-  let renderMovies = "";
-  let renderShows = "";
-
-  if (movies?.Response === "True") {
-    renderMovies = (
-      <Slider {...sliderSettings}>
-        {movies.Search.map((movie, index) => (
-          <div key={index} className="px-2">
-            <MovieCard data={movie} />
-          </div>
-        ))}
-      </Slider>
-    );
-  } else {
-    renderMovies = (
-      <div className="text-center">
-        <h3>{movies?.Error}</h3>
-      </div>
-    );
-  }
-
-  if (shows?.Response === "True") {
-    renderShows = (
-      <Slider {...sliderSettings}>
-        {shows.Search.map((show, index) => (
-          <div key={index} className="px-2">
-            <MovieCard data={show} />
-          </div>
-        ))}
-      </Slider>
-    );
-  } else {
-    renderShows = (
-      <div className="text-center">
-        <h3>{shows?.Error}</h3>
-      </div>
-    );
-  }
-
   return (
-    <div className="container mx-auto py-8">
+    <div className="container mx-auto py-8 px-4">
       <div className="mb-8">
         <h2 className="text-white text-2xl font-bold mb-4 border-b-2 border-gray-600 pb-2">
           Movies
         </h2>
-        <div>{renderMovies}</div>
+        {movies?.Response === "True" ? (
+          <Slider {...sliderSettings} className="mx-auto">
+            {movies.Search.map((movie, index) => (
+              <div key={index} className="px-2">
+                <MovieCard data={movie} />
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <div className="text-center">
+            <h3>{movies?.Error}</h3>
+          </div>
+        )}
       </div>
       <div>
         <h2 className="text-white text-2xl font-bold mb-4 border-b-2 border-gray-600 pb-2">
           Shows
         </h2>
-        <div>{renderShows}</div>
+        {shows?.Response === "True" ? (
+          <Slider {...sliderSettings} className="mx-auto">
+            {shows.Search.map((show, index) => (
+              <div key={index} className="px-2">
+                <MovieCard data={show} />
+              </div>
+            ))}
+          </Slider>
+        ) : (
+          <div className="text-center">
+            <h3>{shows?.Error}</h3>
+          </div>
+        )}
       </div>
     </div>
   );

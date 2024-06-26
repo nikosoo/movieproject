@@ -21,20 +21,23 @@ const Header = () => {
   };
 
   return (
-    <div className="flex items-center justify-between bg-customHeader px-6 py-4 h-20 text-white">
+    <div className="bg-customHeader px-6 py-4 md:px-12 md:py-6 lg:px-24 lg:py-8 flex items-center justify-between">
       <div>
-        <Link to="/" className="text-3xl font-bold">
+        <Link
+          to="/"
+          className="text-3xl md:text-4xl lg:text-5xl font-bold text-white"
+        >
           Movie App
         </Link>
       </div>
-      <div>
+      <div className="flex mt-4 md:mt-0">
         <form onSubmit={submitHandler} className="flex items-center space-x-2">
           <input
             type="text"
             placeholder="Search"
             value={term}
             onChange={(e) => setTerm(e.target.value)}
-            className="px-4 py-2 text-black rounded-l-md focus:outline-none"
+            className="px-4 py-2 text-black rounded-l-md focus:outline-none w-40 md:w-64 lg:w-80"
           />
           <button
             type="submit"
